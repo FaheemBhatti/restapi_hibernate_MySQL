@@ -11,15 +11,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.restapi.showroom.hibernate.entity.BrandEntity;
-import org.restapi.showroom.hibernate.entity.ProductEntity;
 import org.restapi.showroom.services.BrandsService;
-import org.restapi.showroom.services.ProductsService;
+
 
 @Path("/showroom/brands")
 public class Brands 
 {
 	BrandsService service = new BrandsService();
-	ProductsService productsService = new ProductsService();
 
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
@@ -51,20 +49,5 @@ public class Brands
 	{
 		service.deletedBrand(brandId);
 	}
-	
-	
-	@GET
-	@Path("/{brandId}/products")
-	@Produces(MediaType.APPLICATION_XML)
-	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId) 
-	{
-		List<ProductEntity> list = productsService.getProductsByBrand(brandId); 
-		return list;
-	}
-	
-	
-	
-	
-	
-	
+
 }

@@ -73,5 +73,4 @@ public class ProductEntity
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
-
 }

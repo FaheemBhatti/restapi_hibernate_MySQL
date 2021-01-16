@@ -48,5 +48,4 @@ public class BrandsDAO {
 		brand.setBrandName(updatedBrand.getBrandName());
 		session.getTransaction().commit();
 	}
-
 }

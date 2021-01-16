@@ -10,18 +10,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.restapi.showroom.hibernate.entity.BrandEntity;
+import org.restapi.showroom.hibernate.entity.ProductEntity;
 import org.restapi.showroom.services.BrandsService;
+import org.restapi.showroom.services.ProductsService;
 
-@Path("/showroom")
+@Path("/showroom/brands")
 public class Brands 
 {
 	BrandsService service = new BrandsService();
+	ProductsService productsService = new ProductsService();
 
 	@GET
-	@Path("/brands")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<BrandEntity> getBrands() 
 	{
@@ -30,7 +30,6 @@ public class Brands
 	}
 	
 	@POST
-	@Path("/brands")
 	@Consumes(MediaType.APPLICATION_XML)
 	public void setBrands(BrandEntity brand) 
 	{
@@ -38,7 +37,7 @@ public class Brands
 	}
 	
 	@PUT
-	@Path("/brands/{brandId}")
+	@Path("/{brandId}")
 	@Consumes(MediaType.APPLICATION_XML)
 	public void putBrands(@ PathParam("brandId") int brandId, BrandEntity updatedBrand) 
 	{
@@ -47,9 +46,25 @@ public class Brands
 	}
 	
 	@DELETE
-	@Path("/brands/{brandId}")
+	@Path("/{brandId}")
 	public void deleteBrands(@PathParam("brandId") int brandId) 
 	{
 		service.deletedBrand(brandId);
 	}
+	
+	
+	@GET
+	@Path("/{brandId}/products")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId) 
+	{
+		List<ProductEntity> list = productsService.getProductsByBrand(brandId); 
+		return list;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.restapi.showroom.hibernate.entity.ProductEntity;
 import org.restapi.showroom.services.ProductsService;
@@ -18,10 +19,18 @@ public class Products
 	@GET
 	@Path("/{brandId}/products")
 	@Produces(MediaType.APPLICATION_XML)
-	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId) 
+	public List<ProductEntity> getProductsByBrand(@PathParam("brandId") int brandId ,  
+			@QueryParam ("category") String category ) 
 	{
-		List<ProductEntity> list = productsService.getProductsByBrand(brandId); 
-		return list;
+		List<ProductEntity> list;
+		if(category != null)
+		{
+			list = productsService.getProductsByBrandAndCategory(brandId , category);
+			return list;
+		}else
+		{
+			list = productsService.getProductsByBrand(brandId); 
+			return list;
+		}
 	}
-
 }

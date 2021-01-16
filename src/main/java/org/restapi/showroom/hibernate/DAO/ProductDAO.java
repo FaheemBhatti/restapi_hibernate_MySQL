@@ -23,6 +23,15 @@ public class ProductDAO
 		String sqlQuery = "from products where brandId = '" +brandId+"'";
 		productList = session.createQuery(sqlQuery).getResultList();
 		return productList;
-		
+	}
+
+	public List<ProductEntity> getProductsByBrandAndCategory(int brandId, String category) 
+	{
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		List<ProductEntity> productList;
+		String HQL = "from products where brandId ='" + brandId +"'and category = '" +category +"'";
+		productList = session.createQuery(HQL).getResultList();
+		return productList;
 	}
 }

@@ -19,9 +19,9 @@ public class ProductDAO
 	{
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		List<ProductEntity> productList;
 		String sqlQuery = "from products where brandId = '" +brandId+"'";
-		productList = session.createQuery(sqlQuery).getResultList();
+		@SuppressWarnings("unchecked")
+		List<ProductEntity>productList = session.createQuery(sqlQuery).getResultList();
 		return productList;
 	}
 
@@ -29,9 +29,9 @@ public class ProductDAO
 	{
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		List<ProductEntity> productList;
 		String HQL = "from products where brandId ='" + brandId +"'and category = '" +category +"'";
-		productList = session.createQuery(HQL).getResultList();
+		@SuppressWarnings("unchecked")
+		List<ProductEntity> productList = session.createQuery(HQL).getResultList();
 		return productList;
 	}
 }

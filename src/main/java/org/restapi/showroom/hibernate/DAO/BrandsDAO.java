@@ -49,4 +49,14 @@ public class BrandsDAO {
 		brand.setBrandName(updatedBrand.getBrandName());
 		session.getTransaction().commit();
 	}
+
+	public List<BrandEntity> getBrand(int brandId) 
+	{
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		String HQL = "from brands where brandId ='" + brandId+"'";
+		@SuppressWarnings("unchecked")
+		List<BrandEntity> brand = session.createQuery(HQL).getResultList();
+		return brand;
+	}
 }

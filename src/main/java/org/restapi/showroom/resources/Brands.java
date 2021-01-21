@@ -27,6 +27,15 @@ public class Brands
 		return list;
 	}
 	
+	@GET
+	@Path("/{brandId}")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<BrandEntity> getBrand(@PathParam("brandId") int brandId)
+	{
+		List<BrandEntity> list = service.getBrand(brandId);
+		return list;
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
 	public void setBrands(BrandEntity brand) 

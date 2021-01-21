@@ -30,4 +30,10 @@ public class BrandsService
 	{
 		DAO.deleteBrand(brandId);
 	}
+
+	public List<BrandEntity> getBrand(int brandId)
+	{
+		List<BrandEntity> list = DAO.getBrand(brandId);
+		return list;
+	}
 }
